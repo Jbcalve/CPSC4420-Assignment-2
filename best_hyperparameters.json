@@ -1,0 +1,8 @@
+{
+  "alpha": 0.5,
+  "gamma": 0.8,
+  "initial_epsilon": 0.5,
+  "training_mean_last_100": 7.55,
+  "evaluation_mean_reward": 9.133333333333333,
+  "evaluation_success_rate": 1.0
+}
