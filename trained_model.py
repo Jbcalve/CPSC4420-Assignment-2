@@ -7,9 +7,9 @@ def train_q_learning(
     env_name="Taxi-v4",
     n_episodes=1000,
     max_steps=200,
-    alpha=0.1,       # Learning rate
+    alpha=0.9,       # Learning rate
     gamma=0.99,      # Discount factor
-    epsilon=1.0,     # Initial exploration rate
+    epsilon=0.5,     # Initial exploration rate
     epsilon_decay=0.995,
     min_epsilon=0.01
 ):
@@ -55,24 +55,19 @@ def train_q_learning(
     return q_table, rewards_per_episode
 
 # Example: Investigate different hyperparameters
-learning_rates = [0.1, 0.5, 0.9]
-results = {}
-
-for lr in learning_rates:
-    print(f"Training with learning rate (alpha) = {lr}...")
-    _, rewards = train_q_learning(alpha=lr)
-    results[lr] = rewards
+_, rewards = train_q_learning()
 
 # Plotting the results to analyze hyperparameter behavior
 plt.figure(figsize=(10, 6))
-for lr, rewards in results.items():
-    # Smooth rewards for cleaner visualization (moving average)
-    smoothed_rewards = np.convolve(rewards, np.ones(100)/100, mode='valid')
-    plt.plot(smoothed_rewards, label=f"Alpha = {lr}")
+
+smoothed_rewards = np.convolve(rewards, np.ones(100)/100, mode='valid')
+
+plt.plot(smoothed_rewards, label="Total Reward per Episode", linewidth=2)
 
 plt.xlabel("Episodes")
 plt.ylabel("Total Reward (100-episode moving average)")
-plt.title("Q-Learning Performance with Different Learning Rates on Taxi-v4")
+plt.title("Q-Learning Performance with Baseline Model on Taxi-v4")
 plt.legend()
 plt.grid(True)
+plt.savefig("trained_model.png")
 plt.show()
