@@ -8,4 +8,4 @@ Training of a OpenAI Gym model to test the best learning rate, discount factor, 
 # Running
 - Run each individual py file separately either using 
   - Python extension in VSCode
-  - "python <filename>" terminal command
+  - "python (filename.py)" terminal command
